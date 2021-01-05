@@ -1,10 +1,24 @@
 import React, {Component} from 'react';
-import wip from '../..//wip.gif';
+import Timesheet from "../Timesheet/Timesheet";
+import {Dashboard} from "../Dashboard/Dashboard";
+import {Route, Switch, Redirect} from "react-router-dom";
 
-class Home extends Component {
+export class Home extends Component {
     render() {
         return (
-            <header className="App-header">
+            <>
+                <div>
+                    <a href="/home">timesheet component</a>
+                    <a href="/home/dashboard">dashboard</a>
+                </div>
+
+                <Switch>
+                    <Route path="/home" exact component={Timesheet}/>
+                    <Route path="/home/dashboard" component={Dashboard}/>
+                    <Route><Redirect to="/"/></Route>
+                </Switch>
+            </>
+                        /*            <header className="App-header">
                 <img src={wip} className="App-logo" alt="logo"/>
 
                 <p>
@@ -33,8 +47,8 @@ class Home extends Component {
                 </p>
 
             </header>
+
+             */
         )
     }
 }
-
-export default Home;

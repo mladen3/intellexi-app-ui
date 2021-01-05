@@ -1,20 +1,21 @@
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 
-import Timesheet from "./containers/Timesheet/Timesheet";
-import Home from "./containers/Home/Home";
+import {Home} from "./containers/Home/Home";
+import history from "./history";
+import {Login} from "./containers/Login/Login";
+import {NotFoundPage} from "./containers/ErrorPage/NotFoundPage";
 
 function App() {
 
     return (
-        <div className="App">
-            <BrowserRouter>
-                <div className="App">
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/timesheet" exact component={Timesheet}/>
-                </div>
-            </BrowserRouter>
-        </div>
+        <Router history={history}>
+            <Switch>
+                <Route path="/" exact component={Login}/>
+                <Route path="/home" component={Home}/>
+                <Route component={NotFoundPage}/>
+            </Switch>
+        </Router>
     );
 }
 
