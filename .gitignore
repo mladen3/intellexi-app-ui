@@ -1,9 +1,12 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDEA
+.idea/
+*.iml
 
 # dependencies
+/node-sass-chokidar
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
@@ -21,3 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/package-lock.json
+
+src/**/*.css
+src/**/*.css.map

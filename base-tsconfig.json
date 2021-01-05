@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "paths": {
+      "app-model": ["model"],
+      "app-tools": ["tools"],
+      "app-pages": ["pages"],
+      "app-store": ["store"],
+      "app-components": ["components"],
+      "app-hoc": ["hoc"]
+    }
+  }
+}
