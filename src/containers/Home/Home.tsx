@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import wip from '../..//wip.gif';
+import * as React from 'react';
+import {Component} from 'react';
+import wip from '../../wip.gif';
 
-class Home extends Component {
+class Home extends Component<any, any> {
     render() {
         return (
             <header className="App-header">
