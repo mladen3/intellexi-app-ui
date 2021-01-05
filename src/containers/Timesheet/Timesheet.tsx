@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -9,7 +8,7 @@ import {events} from '../../store/events/events';
 
 import './Timesheet.css';
 
-class Timesheet extends Component {
+export class Timesheet extends Component {
 
     render() {
 
@@ -28,5 +27,3 @@ class Timesheet extends Component {
         )
     }
 }
-
-export default withRouter(Timesheet);

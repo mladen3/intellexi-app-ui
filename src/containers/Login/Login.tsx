@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import history from "../../history";
+import {ROUTE} from "../../Routing/Routes";
 
 export class Login extends Component {
 
@@ -13,6 +14,6 @@ export class Login extends Component {
     }
 
     goHome() {
-        history.push("/home");
+        history.push(ROUTE.timesheet);
     }
 }
