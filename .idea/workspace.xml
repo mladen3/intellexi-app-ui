@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2beb0416-2b69-4b74-8695-702c2643d172" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ContactLabel/ContactLabel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ContactLabel/ContactLabel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/EmployeeInfo/EmployeeInfo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/InfoLabel/InfoLabel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/InfoLabel/InfoLabel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SlideTransitions/CustomSlide/CustomSlide.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfilePic/ProfilePic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfilePic/ProfilePic.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Employee/Employee.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Employee/Employee.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/employee/employee.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/employee/employee.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/employee/employee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/employee/employee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Home/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1mb7pbAbHvlA548B9gBORye80O4" />
@@ -46,6 +42,11 @@
     <property name="ts.external.directory.path" value="D:\WSIntellexiApp\intellexi-app-ui\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WSIntellexiApp\intellexi-app-ui\src\components\SlideTransitions" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +59,7 @@
       <workItem from="1609840849350" duration="10105000" />
       <workItem from="1610024049477" duration="1297000" />
       <workItem from="1610025533297" duration="63000" />
-      <workItem from="1610025599020" duration="1289000" />
+      <workItem from="1610025599020" duration="8933000" />
     </task>
     <servers />
   </component>

@@ -17,7 +17,7 @@ export class Home extends Component {
     public routes = new Map([
         ["Timesheet", ROUTE.timesheet],
         ["Dashboard", ROUTE.dashboard],
-        ["Employee", ROUTE.employee]
+        ["Profile", ROUTE.employee]
     ]);
 
     render() {
