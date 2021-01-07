@@ -1,8 +1,16 @@
-import {Component} from "react";
 import wip from '../../wip.gif';
+import {IAppState} from "app-store";
+import {fetchEmployeesAction} from "../../store/employees/employees.actions";
+import {connect} from "react-redux";
+import {IEmployee} from "../../model/common/IEmployee";
+import {RouteComponentProps} from "react-router";
 
-class Home extends Component<any, any> {
-    render() {
+interface IProps extends RouteComponentProps<any> {
+  employees: IEmployee[];
+  fetchEmployees: () => void;
+}
+
+const HomeInner = (props: IProps) => {
         return (
             <header className="App-header">
                 <img src={wip} className="App-logo" alt="logo"/>
@@ -28,13 +36,34 @@ class Home extends Component<any, any> {
                     GitHub repo for intellexi-app-web
                 </a>
                 <br/><br/>
-                <p style={{cursor: "pointer"}} onClick={() => this.props.history.push('/timesheet')}>
+                <p style={{cursor: "pointer"}} onClick={() => props.history.push('/timesheet')}>
                     Timesheet component
+                </p>
+                <br/><br/>
+                <p>
+                  {props.employees.map(e => {
+                    return `${e.firstName} ${e.lastName} - `
+                  })}
+                </p>
+                <br/><br/>
+                <p style={{cursor: "pointer"}} onClick={() => props.fetchEmployees()}>
+                  Dohvati zaposlenike
                 </p>
 
             </header>
         )
-    }
 }
 
-export default Home;
+function mapStateToProps(state: IAppState) {
+  return {
+    employees: state.employees.data
+  }
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    fetchEmployees: () => dispatch(fetchEmployeesAction())
+  }
+}
+
+export const Home = connect(mapStateToProps, mapDispatchToProps)(HomeInner);
