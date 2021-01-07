@@ -5,8 +5,8 @@ import {Home} from "./containers/Home/Home";
 import history from "./history";
 import {Login} from "./containers/Login/Login";
 import {NotFoundPage} from "./containers/ErrorPage/NotFoundPage";
-import {ROUTE} from "./Routing/Routes";
-import {ProtectedRoute} from "./Routing/ProtectedRoute";
+import {ROUTE} from "./routing/Routes";
+import {ProtectedRoute} from "./routing/ProtectedRoute";
 import {NotAuthorizedPage} from "./containers/ErrorPage/NotAuthorizedPage";
 
 function App() {

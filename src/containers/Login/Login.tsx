@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import history from "../../history";
-import {ROUTE} from "../../Routing/Routes";
+import {ROUTE} from "../../routing/Routes";
 
 export class Login extends Component {
 
