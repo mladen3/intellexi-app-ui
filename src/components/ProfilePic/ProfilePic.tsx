@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
             height: theme.spacing(3),
         },
         large: {
-            width: theme.spacing(10),
-            height: theme.spacing(10),
+            width: theme.spacing(16),
+            height: theme.spacing(16),
         },
         orange: {
             color: theme.palette.getContrastText(deepOrange[500]),
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const ProfilePic = () => {
+const ProfilePic = (props: {firstName: string, lastName: string}) => {
 
     const classes = useStyles();
 
     return (
-        <Avatar alt="Remy Sharp" src="../../pp.png" className={[classes.large, classes.orange].join(" ")}/>
+        <Avatar alt={props.firstName} src="../../pp.png" className={[classes.large, classes.orange].join(" ")}/>
     )
 }
 

@@ -1,27 +1,39 @@
 import * as React from "react";
 import {Component} from "react";
 
-import {Fab, TextField, Tooltip} from "@material-ui/core";
-import {Cancel, Edit, Save} from "@material-ui/icons";
+import {Fab, Tooltip, Divider, Grid} from "@material-ui/core";
+import "./employee.css";
 
+
+import {Cancel, Edit, Save} from "@material-ui/icons";
 import ProfilePic from "../../components/ProfilePic/ProfilePic";
+import EmployeeInfo from "../../components/EmployeeInfo/EmployeeInfo";
+import EmployeeEdit from "../../components/EmployeeEdit/EmployeeEdit";
 
 class Employee extends Component<any, any> {
 
     state = {
         isEditing: false,
-        id: 1,
-        firstName: 'Ivan',
-        lastName: 'Ivić',
-        dob: '15.3.1991.',
-        firstDayInCompany: '12.6.2019.',
-        yearsOfExperience: '4y5m',
-        managedBy: 'Petar Perić',
-        employeeType: 'Kum od šefa'
+        employee: {
+            id: 1,
+            firstName: 'Ivan',
+            lastName: 'Ivić',
+            dob: '15.3.1991.',
+            firstDayInCompany: '12.6.2019.',
+            yearsOfExperience: '4y5m',
+            managedBy: 'Petar Perić',
+            employeeType: 'Software Developer',
+            email: 'ivan.ivic@gmail.com',
+            phone: '0956668843',
+            address: 'Ulica Nekog Umjetnika 5',
+            skillSet: 'Front (React, Angular), Back(Java)'
+        }
     }
 
-    onChangeHandler = (event: any) => {
-        this.setState({firstName: event.target.value});
+    onNameChangeHandler = (event: any) => {
+        const employee = {...this.state.employee};
+        employee.firstName = event.target.value;
+        this.setState({employee: employee});
     }
 
     onEditHandler = () => {
@@ -33,66 +45,33 @@ class Employee extends Component<any, any> {
     }
 
     render() {
+
         return (
             <div className="Employee">
-                <div className="Avatar">
-                    <ProfilePic/>
-                </div>
+                <Grid container direction="row" alignItems="center">
+                    <Grid item style={{marginRight: "32px"}}>
+                        <ProfilePic firstName={this.state.employee.firstName} lastName={this.state.employee.lastName}/>
+                    </Grid>
+                    {!this.state.isEditing ? (<Grid item style={{fontSize: "24px"}}>
+                        <p>{this.state.employee.firstName + " " + this.state.employee.lastName}</p>
 
-                {/* All this below will be one component (when we get back response from service)*/}
-                <div>
-                    <div className="TextField Name">
-                        <TextField id="outlined-basic" label="First Name" value={this.state.firstName}
-                                   variant="outlined" onChange={this.onChangeHandler}
-                                   InputProps={{
-                                       disabled: !this.state.isEditing,
-                                   }}/>
-                    </div>
-                    <div className="TextField Name">
-                        <TextField id="outlined-basic" label="Last Name" value={this.state.lastName} variant="outlined"
-                                   InputProps={{
-                                       disabled: !this.state.isEditing,
-                                   }}/>
-                    </div>
-                </div>
-                <div>
-                    <div className="TextField">
-                        <TextField id="outlined-basic" label="DOB" value={this.state.dob} variant="outlined"
-                                   InputProps={{
-                                       disabled: !this.state.isEditing,
-                                   }}/>
-                    </div>
-                    <div className="TextField">
-                        <TextField id="outlined-basic" label="In company from" value={this.state.firstDayInCompany}
-                                   variant="outlined" InputProps={{
-                            disabled: !this.state.isEditing,
-                        }}/>
-                    </div>
-                    <div className="TextField">
-                        <TextField id="outlined-basic" label="First superior" value={this.state.managedBy}
-                                   variant="outlined" InputProps={{
-                            disabled: !this.state.isEditing,
-                        }}/>
-                    </div>
-                    <div className="TextField">
-                        <TextField id="outlined-basic" label="Years of experience" value={this.state.yearsOfExperience}
-                                   variant="outlined" InputProps={{
-                            disabled: !this.state.isEditing,
-                        }}/>
-                    </div>
-                    <div className="TextField">
-                        <TextField id="outlined-basic" label="Employee type" value={this.state.employeeType}
-                                   variant="outlined" InputProps={{
-                            disabled: !this.state.isEditing,
-                        }}/>
-                    </div>
-                </div>
+                        <p className="EmployeeType">{this.state.employee.employeeType}</p>
+                    </Grid>) : null}
+                </Grid>
+
+                <Divider variant="middle" style={{margin: "32px 0px"}}/>
+
+                {!this.state.isEditing ? <EmployeeInfo employee={this.state.employee}/> :
+                    <EmployeeEdit employee={this.state.employee} nameChanged={this.onNameChangeHandler}/>}
+
+                <Divider variant="middle" style={{margin: "32px 0px"}}/>
 
                 {this.state.isEditing ?
                     (
                         <div>
                             <Tooltip title="Save" aria-label="save">
-                                <Fab style={{marginRight: "8px"}} color="primary" aria-label="save" onClick={this.onSaveHandler}>
+                                <Fab style={{marginRight: "8px"}} color="primary" aria-label="save"
+                                     onClick={this.onSaveHandler}>
                                     <Save/>
                                 </Fab>
                             </Tooltip>
