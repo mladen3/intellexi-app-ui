@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {Timesheet} from "../Timesheet/Timesheet";
-import {Dashboard} from "../Dashboard/Dashboard";
+import {Dashboard} from "../../pages/dashboard/dashboard";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {ROUTE} from "../../routing/Routes";
 import {ProtectedRoute} from "../../routing/ProtectedRoute";

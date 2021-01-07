@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import history from '../../history';
 import {ROUTE} from "../../routing/Routes";
 
-import './Login.css';
+import './login.css';
 
 export class Login extends Component {
 
