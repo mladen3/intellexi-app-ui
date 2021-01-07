@@ -7,8 +7,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 
 import {events} from '../../store/events/events';
 
-import './timesheet.css';
-
 class Timesheet extends Component<any, any> {
 
     render() {
