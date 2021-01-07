@@ -1,14 +1,13 @@
-import {Component} from 'react';
+import {Component} from "react";
+import {withRouter} from "react-router-dom";
 
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 
 import {events} from '../../store/events/events';
 
-import './Timesheet.css';
-
-export class Timesheet extends Component {
+class Timesheet extends Component<any, any> {
 
     render() {
 
@@ -27,3 +26,5 @@ export class Timesheet extends Component {
         )
     }
 }
+
+export default withRouter(Timesheet);

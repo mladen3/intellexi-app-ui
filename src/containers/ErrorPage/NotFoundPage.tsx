@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import history from "../../history";
 
 export class NotFoundPage extends Component {
