@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component} from "react";
 import wip from '../../wip.gif';
 
 class Home extends Component<any, any> {

@@ -1,10 +1,8 @@
 import './App.css';
 import {BrowserRouter, Route} from "react-router-dom";
-
-import Timesheet from "./containers/Timesheet/Timesheet";
-import Home from "./containers/Home/Home";
-import React from 'react';
-import Employee from "./containers/Employee/Employee";
+import Home from "./pages/home/home";
+import Timesheet from "./pages/timesheet/timesheet";
+import Employee from "./pages/employee/employee";
 
 function App() {
 

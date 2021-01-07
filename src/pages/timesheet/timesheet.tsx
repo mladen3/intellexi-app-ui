@@ -1,13 +1,13 @@
-import {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import {Component} from "react";
+import {withRouter} from "react-router-dom";
 
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 
 import {events} from '../../store/events/events';
 
-import './Timesheet.css';
+import './timesheet.css';
 
 class Timesheet extends Component<any, any> {
 
