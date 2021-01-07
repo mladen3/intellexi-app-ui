@@ -3,7 +3,6 @@ import {Component} from "react";
 
 import {Fab, TextField, Tooltip} from "@material-ui/core";
 import {Cancel, Edit, Save} from "@material-ui/icons";
-import "./employee.css";
 
 import ProfilePic from "../../components/ProfilePic/ProfilePic";
 

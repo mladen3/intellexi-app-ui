@@ -1,25 +1,25 @@
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
-import {Home} from "./pages/home/home";
-import Timesheet from "./pages/timesheet/timesheet";
-import Employee from "./pages/employee/employee";
-import {Provider} from "react-redux";
-import {store} from "./store/store";
+import {Router, Route, Switch} from "react-router-dom";
+
+import {Home} from "./containers/Home/Home";
+import history from "./history";
+import {Login} from "./pages/login/login";
+import {NotFoundPage} from "./pages/errorPages/notFoundPage";
+import {ROUTE} from "./routing/Routes";
+import {ProtectedRoute} from "./routing/ProtectedRoute";
+import {NotAuthorizedPage} from "./pages/errorPages/notAuthorizedPage";
 
 function App() {
 
     return (
-        <Provider store={store}>
-            <div className="App">
-                <BrowserRouter>
-                    <div className="App">
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/timesheet" exact component={Timesheet}/>
-                        <Route path="/employee" exact component={Employee}/>
-                    </div>
-                </BrowserRouter>
-            </div>
-        </Provider>
+        <Router history={history}>
+            <Switch>
+                <Route path={ROUTE.login} exact component={Login}/>
+                <ProtectedRoute path={ROUTE.timesheet} component={Home} hasAuthorizationRights={true}/>
+                <Route path={ROUTE.notAuthorized} component={NotAuthorizedPage}/>
+                <Route component={NotFoundPage}/>
+            </Switch>
+        </Router>
     );
 }
 

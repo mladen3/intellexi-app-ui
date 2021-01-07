@@ -1,0 +1,37 @@
+.Login {
+    background-color: #757de8;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    border: 5px solid #002984;
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.middle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border-radius: 30px;
+}
+
+.title {
+    padding: 10px;
+}
+
+.input {
+    color: white;
+}
+
+.goto {
+    padding: 10px;
+}
+
+.Container {
+    height: 100vh;
+}
