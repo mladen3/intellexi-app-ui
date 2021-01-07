@@ -23,11 +23,11 @@ export class Login extends Component {
                     <h1 className="title">Login</h1>
                     <div>
                       <div className="TextField Username">
-                        <TextField id="outlined-basic" label="Username" size="small"
+                        <TextField id="outlined-basic" label="Username" size="small" style={{backgroundColor: "white"}}
                                    variant="outlined" onChange={(e) => this.username = e.target.value}/>
                       </div>
                       <div className="TextField Password">
-                        <TextField id="outlined-basic" type="password" label="Password" size="small"
+                        <TextField id="outlined-basic" type="password" label="Password" size="small" style={{backgroundColor: "white"}}
                                    variant="outlined" onChange={(e) => this.password = e.target.value}/>
                       </div>
                     </div>
