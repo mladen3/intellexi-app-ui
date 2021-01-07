@@ -2,17 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2beb0416-2b69-4b74-8695-702c2643d172" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/SlideTransitions/CustomSlide/CustomSlide.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/EmployeeHeader/EmployeeTitle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Home/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -59,11 +64,34 @@
       <workItem from="1609840849350" duration="10105000" />
       <workItem from="1610024049477" duration="1297000" />
       <workItem from="1610025533297" duration="63000" />
-      <workItem from="1610025599020" duration="8933000" />
+      <workItem from="1610025599020" duration="9736000" />
     </task>
+    <task id="LOCAL-00001" summary="Added animations">
+      <created>1610034734542</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610034734542</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added animations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added animations" />
   </component>
 </project>
