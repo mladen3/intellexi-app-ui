@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useFormik} from 'formik';
-import {Divider, TextareaAutosize, TextField} from "@material-ui/core";
+import {Divider, TextField} from "@material-ui/core";
 
 import * as yup from 'yup';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from "@material-ui/pickers";
@@ -49,10 +49,6 @@ const validationSchema = yup.object({
         .required('Skill set is required')
 });
 
-const handleDateChange = (date: Date | null) => {
-    console.log(date);
-};
-
 const EmployeeEdit = (props: any) => {
 
     const formik = useFormik({
@@ -67,7 +63,8 @@ const EmployeeEdit = (props: any) => {
             yearsOfExperience: props.employee.yearsOfExperience,
             managedBy: props.employee.managedBy,
             employeeType: props.employee.employeeType,
-            skillSet: props.employee.skillSet
+            skillSet: props.employee.skillSet,
+            testDate: props.employee.testDate
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -146,38 +143,48 @@ const EmployeeEdit = (props: any) => {
                     <Divider variant="middle" style={{margin: "16px 0px"}}/>
 
                     <div>
-                        <div className="TextField">
-                            <TextField
-                                variant="outlined"
-                                id="dob"
-                                type="date"
-                                name="dob"
-                                label="Date of birth"
-                                value={formik.values.dob}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.dob && Boolean(formik.errors.dob)}
-                                helperText={formik.touched.dob && formik.errors.dob}/>
-                        </div>
-                        <div className="TextField">
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <div className="TextField">
                                 <KeyboardDatePicker
                                     disableToolbar
                                     variant="inline"
-                                    format="dd.MM.yyyy"
+                                    format="MM/dd/yyyy"
                                     margin="normal"
                                     id="firstDayInCompany"
                                     label="First day in company"
                                     value={formik.values.firstDayInCompany}
                                     error={formik.touched.firstDayInCompany && Boolean(formik.errors.firstDayInCompany)}
                                     helperText={formik.touched.firstDayInCompany && formik.errors.firstDayInCompany}
-                                    onChange={handleDateChange}
+                                    onChange={val => {
+                                        formik.setFieldValue("firstDayInCompany", val);
+                                    }}
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
                                 />
-                            </MuiPickersUtilsProvider>
-                        </div>
+                            </div>
+
+                            <div className="TextField">
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="MM/dd/yyyy"
+                                    margin="normal"
+                                    id="dob"
+                                    label="Birth date"
+                                    value={formik.values.dob}
+                                    error={formik.touched.dob && Boolean(formik.errors.dob)}
+                                    helperText={formik.touched.dob && formik.errors.dob}
+                                    onChange={val => {
+                                        formik.setFieldValue("dob", val);
+                                    }}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </div>
+                        </MuiPickersUtilsProvider>
+
                         <div className="TextField">
                             <TextField
                                 variant="outlined"
@@ -215,12 +222,15 @@ const EmployeeEdit = (props: any) => {
                                 helperText={formik.touched.employeeType && formik.errors.employeeType}/>
                         </div>
                         <div className="TextField">
-                            <TextareaAutosize
+                            <TextField
+                                variant="outlined"
                                 id="skillSet"
                                 name="skillSet"
+                                label="Employee Type"
                                 value={formik.values.skillSet}
                                 onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}/>
+                                onBlur={formik.handleBlur}error={formik.touched.employeeType && Boolean(formik.errors.employeeType)}
+                                helperText={formik.touched.employeeType && formik.errors.employeeType}/>
                         </div>
                     </div>
                 </div>

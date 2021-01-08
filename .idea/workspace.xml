@@ -3,13 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2beb0416-2b69-4b74-8695-702c2643d172" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/intellexi-app-web.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmployeeEdit/EmployeeEdit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EmployeeInfo/EmployeeInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmployeeInfo/EmployeeInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Employee/Employee.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +71,7 @@
       <workItem from="1610024049477" duration="1297000" />
       <workItem from="1610025533297" duration="63000" />
       <workItem from="1610025599020" duration="22106000" />
+      <workItem from="1610113519459" duration="125000" />
     </task>
     <task id="LOCAL-00001" summary="Added animations">
       <created>1610034734542</created>
@@ -95,6 +96,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added animations" />
