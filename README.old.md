@@ -1,1 +1,0 @@
-# intellexi-app-web

@@ -1,5 +1,5 @@
 import {IEmployee} from "../../model/common/IEmployee";
-import {EmployeesHelper} from "app-tools";
+import {EmployeesHelper} from "../../tools/employees-helper";
 import {IAction} from "app-store";
 import * as actionTypes from "./employees.action-types";
 
@@ -25,6 +25,7 @@ export const employeesReducer = (state: IEmployeesState = initialState, action: 
     case actionTypes.FETCH_EMPLOYEES_SUCCESS:
       return {
         ...state,
+        data: action.payload,
         loading: false
       }
     case actionTypes.FETCH_EMPLOYEES_ERROR:
