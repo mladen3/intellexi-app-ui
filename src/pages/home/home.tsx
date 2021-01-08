@@ -1,40 +1,39 @@
-import {Component} from "react";
-import wip from '../../wip.gif';
+import {Component} from 'react';
+import {Redirect, Route, Switch} from "react-router-dom";
+import {ROUTE} from "../../routing/Routes";
+import {ProtectedRoute} from "../../routing/ProtectedRoute";
+import history from "../../history";
+import ClippedDrawer from "../../components/Drawer/Drawer";
+import {Dashboard} from "../dashboard/dashboard";
+import Employee from "../employee/employee";
+import TimesheetPageContainer from "../timesheet/timesheet-page-container";
 
-class Home extends Component<any, any> {
-    render() {
-        return (
-            <header className="App-header">
-                <img src={wip} className="App-logo" alt="logo"/>
+export class Home extends Component {
 
-                <p>
-                    Intellexi App in development...
-                </p>
-                <a
-                    className="App-link"
-                    href="https://drive.google.com/drive/folders/1JdeLnMGu5Rxz8qxLUVE1VUxbHMk5tFZf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Shared Google Drive folder
-                </a>
-                <br/><br/>
-                <a
-                    className="App-link"
-                    href="https://github.com/mladen3/intellexi-app-web"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    GitHub repo for intellexi-app-web
-                </a>
-                <br/><br/>
-                <p style={{cursor: "pointer"}} onClick={() => this.props.history.push('/timesheet')}>
-                    Timesheet component
-                </p>
+  public goToPage(path: string) {
+    history.push(path);
+  }
 
-            </header>
-        )
-    }
+  public routes = new Map([
+    ["Timesheet", ROUTE.timesheet],
+    ["Dashboard", ROUTE.dashboard],
+    ["Profile", ROUTE.employee]
+  ]);
+
+  render() {
+    return (
+        <>
+          <ClippedDrawer routes={this.routes} goToPage={this.goToPage}>
+            <Switch>
+              <ProtectedRoute path={ROUTE.timesheet} exact component={TimesheetPageContainer} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={true}/>
+              <Route>
+                <Redirect to={ROUTE.notFound}/>
+              </Route>
+            </Switch>
+          </ClippedDrawer>
+        </>
+    )
+  }
 }
-
-export default Home;
