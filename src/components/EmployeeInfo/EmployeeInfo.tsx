@@ -19,7 +19,7 @@ const EmployeeInfo = (props: any) => {
 
             <InfoLabel label={"Date of birth"} value={props.employee.dob}/>
 
-            <InfoLabel label={"Started working in company"} value={props.employee.firstDayInCompany}/>
+            <InfoLabel label={"In company from"} value={props.employee.firstDayInCompany}/>
 
             <InfoLabel label={"First superior"} value={props.employee.managedBy}/>
 

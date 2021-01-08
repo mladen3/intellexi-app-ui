@@ -53,11 +53,18 @@ class Employee extends Component<any, any> {
 
                 <Divider variant="middle" style={{margin: "32px 0px"}}/>
 
-                <CustomSlide direction="left" in={!this.state.isEditing}><EmployeeInfo isEditing={this.state.isEditing}
-                                                                          employee={this.state.employee}/></CustomSlide>
+                <CustomSlide direction="left" in={!this.state.isEditing}>
+                    <EmployeeInfo
+                        isEditing={this.state.isEditing}
+                        employee={this.state.employee}/>
+                </CustomSlide>
 
-                <CustomSlide direction="right" in={this.state.isEditing}><EmployeeEdit isEditing={this.state.isEditing} employee={this.state.employee}
-                                          nameChanged={this.onNameChangeHandler}/></CustomSlide>
+                <CustomSlide direction="right" in={this.state.isEditing}>
+                    <EmployeeEdit
+                        isEditing={this.state.isEditing}
+                        employee={this.state.employee}
+                        nameChanged={this.onNameChangeHandler}/>
+                </CustomSlide>
 
                 <Divider variant="middle" style={{margin: "32px 0px"}}/>
 
