@@ -3,8 +3,8 @@ import {useFormik} from "formik";
 import {Divider, TextField} from "@material-ui/core";
 
 import * as yup from "yup";
-// import {MuiPickersUtilsProvider, KeyboardDatePicker} from "@material-ui/pickers";
-// import DateFnsUtils from "@date-io/date-fns";
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const validationSchema = yup.object({
     firstName: yup
@@ -143,47 +143,47 @@ const EmployeeEdit = (props: any) => {
                     <Divider variant="middle" style={{margin: "16px 0px"}}/>
 
                     <div>
-                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                        {/*    <div className="TextField">*/}
-                        {/*        <KeyboardDatePicker*/}
-                        {/*            disableToolbar*/}
-                        {/*            variant="inline"*/}
-                        {/*            format="MM/dd/yyyy"*/}
-                        {/*            margin="normal"*/}
-                        {/*            id="firstDayInCompany"*/}
-                        {/*            label="First day in company"*/}
-                        {/*            value={formik.values.firstDayInCompany}*/}
-                        {/*            error={formik.touched.firstDayInCompany && Boolean(formik.errors.firstDayInCompany)}*/}
-                        {/*            helperText={formik.touched.firstDayInCompany && formik.errors.firstDayInCompany}*/}
-                        {/*            onChange={val => {*/}
-                        {/*                formik.setFieldValue("firstDayInCompany", val);*/}
-                        {/*            }}*/}
-                        {/*            KeyboardButtonProps={{*/}
-                        {/*                'aria-label': 'change date',*/}
-                        {/*            }}*/}
-                        {/*        />*/}
-                        {/*    </div>*/}
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <div className="TextField">
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="MM/dd/yyyy"
+                                    margin="normal"
+                                    id="firstDayInCompany"
+                                    label="First day in company"
+                                    value={formik.values.firstDayInCompany}
+                                    error={formik.touched.firstDayInCompany && Boolean(formik.errors.firstDayInCompany)}
+                                    helperText={formik.touched.firstDayInCompany && formik.errors.firstDayInCompany}
+                                    onChange={val => {
+                                        formik.setFieldValue("firstDayInCompany", val);
+                                    }}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </div>
 
-                        {/*    <div className="TextField">*/}
-                        {/*        <KeyboardDatePicker*/}
-                        {/*            disableToolbar*/}
-                        {/*            variant="inline"*/}
-                        {/*            format="MM/dd/yyyy"*/}
-                        {/*            margin="normal"*/}
-                        {/*            id="dob"*/}
-                        {/*            label="Birth date"*/}
-                        {/*            value={formik.values.dob}*/}
-                        {/*            error={formik.touched.dob && Boolean(formik.errors.dob)}*/}
-                        {/*            helperText={formik.touched.dob && formik.errors.dob}*/}
-                        {/*            onChange={val => {*/}
-                        {/*                formik.setFieldValue("dob", val);*/}
-                        {/*            }}*/}
-                        {/*            KeyboardButtonProps={{*/}
-                        {/*                'aria-label': 'change date',*/}
-                        {/*            }}*/}
-                        {/*        />*/}
-                        {/*    </div>*/}
-                        {/*</MuiPickersUtilsProvider>*/}
+                            <div className="TextField">
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="MM/dd/yyyy"
+                                    margin="normal"
+                                    id="dob"
+                                    label="Birth date"
+                                    value={formik.values.dob}
+                                    error={formik.touched.dob && Boolean(formik.errors.dob)}
+                                    helperText={formik.touched.dob && formik.errors.dob}
+                                    onChange={val => {
+                                        formik.setFieldValue("dob", val);
+                                    }}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </div>
+                        </MuiPickersUtilsProvider>
 
                         <div className="TextField">
                             <TextField
