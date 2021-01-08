@@ -1,14 +1,14 @@
 import * as React from "react";
 import {Component} from "react";
 
-import {Fab, Tooltip, Divider, Grid} from "@material-ui/core";
+import {Fab, Tooltip, Divider} from "@material-ui/core";
+import {Cancel, Edit, Save} from "@material-ui/icons";
 import "./employee.css";
 
-
-import {Cancel, Edit, Save} from "@material-ui/icons";
-import ProfilePic from "../../components/ProfilePic/ProfilePic";
 import EmployeeInfo from "../../components/EmployeeInfo/EmployeeInfo";
 import EmployeeEdit from "../../components/EmployeeEdit/EmployeeEdit";
+import CustomSlide from "../../components/UI/SlideTransitions/CustomSlide/CustomSlide";
+import EmployeeTitle from "../../components/EmployeeHeader/EmployeeTitle";
 
 class Employee extends Component<any, any> {
 
@@ -18,8 +18,8 @@ class Employee extends Component<any, any> {
             id: 1,
             firstName: 'Ivan',
             lastName: 'Ivić',
-            dob: '15.3.1991.',
-            firstDayInCompany: '12.6.2019.',
+            dob: '3/15/1991',
+            firstDayInCompany: '6/12/2019',
             yearsOfExperience: '4y5m',
             managedBy: 'Petar Perić',
             employeeType: 'Software Developer',
@@ -48,21 +48,23 @@ class Employee extends Component<any, any> {
 
         return (
             <div className="Employee">
-                <Grid container direction="row" alignItems="center">
-                    <Grid item style={{marginRight: "32px"}}>
-                        <ProfilePic firstName={this.state.employee.firstName} lastName={this.state.employee.lastName}/>
-                    </Grid>
-                    {!this.state.isEditing ? (<Grid item style={{fontSize: "24px"}}>
-                        <p>{this.state.employee.firstName + " " + this.state.employee.lastName}</p>
 
-                        <p className="EmployeeType">{this.state.employee.employeeType}</p>
-                    </Grid>) : null}
-                </Grid>
+                <EmployeeTitle isEditing={this.state.isEditing} employee={this.state.employee}/>
 
                 <Divider variant="middle" style={{margin: "32px 0px"}}/>
 
-                {!this.state.isEditing ? <EmployeeInfo employee={this.state.employee}/> :
-                    <EmployeeEdit employee={this.state.employee} nameChanged={this.onNameChangeHandler}/>}
+                <CustomSlide direction="left" in={!this.state.isEditing}>
+                    <EmployeeInfo
+                        isEditing={this.state.isEditing}
+                        employee={this.state.employee}/>
+                </CustomSlide>
+
+                <CustomSlide direction="right" in={this.state.isEditing}>
+                    <EmployeeEdit
+                        isEditing={this.state.isEditing}
+                        employee={this.state.employee}
+                        nameChanged={this.onNameChangeHandler}/>
+                </CustomSlide>
 
                 <Divider variant="middle" style={{margin: "32px 0px"}}/>
 

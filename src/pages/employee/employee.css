@@ -1,5 +1,5 @@
 .Employee {
-    margin: 16px 512px;
+    margin: 16px 16px;
     text-align: left;
 }
 
@@ -9,15 +9,9 @@
 }
 
 .TextField {
-    margin: 32px 0px;
+    margin: 32px 8px;
 }
 
 .Name {
     display: inline-block;
-    margin-right: 16px;
-}
-
-.Avatar {
-    margin-bottom: 32px;
-    margin-top: 32px;
 }

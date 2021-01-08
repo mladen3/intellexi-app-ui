@@ -1,7 +1,8 @@
 import * as React from "react";
 import {Grid} from "@material-ui/core";
 import ProfilePic from "../ProfilePic/ProfilePic";
-import CustomSlide from "../SlideTransitions/CustomSlide/CustomSlide";
+import CustomSlide from "../UI/SlideTransitions/CustomSlide/CustomSlide";
+
 
 const EmployeeTitle = (props: any) => {
     return (

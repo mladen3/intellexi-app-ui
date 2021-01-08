@@ -1,69 +1,39 @@
-import wip from '../../wip.gif';
-import {IAppState} from "app-store";
-import {fetchEmployeesAction} from "../../store/employees/employees.actions";
-import {connect} from "react-redux";
-import {IEmployee} from "../../model/common/IEmployee";
-import {RouteComponentProps} from "react-router";
+import {Component} from 'react';
+import {Redirect, Route, Switch} from "react-router-dom";
+import {ROUTE} from "../../routing/Routes";
+import {ProtectedRoute} from "../../routing/ProtectedRoute";
+import history from "../../history";
+import ClippedDrawer from "../../components/Drawer/Drawer";
+import Timesheet from "../timesheet/timesheet";
+import {Dashboard} from "../dashboard/dashboard";
+import Employee from "../employee/employee";
 
-interface IProps extends RouteComponentProps<any> {
-  employees: IEmployee[];
-  fetchEmployees: () => void;
-}
+export class Home extends Component {
 
-const HomeInner = (props: IProps) => {
-        return (
-            <header className="App-header">
-                <img src={wip} className="App-logo" alt="logo"/>
+  public goToPage(path: string) {
+    history.push(path);
+  }
 
-                <p>
-                    Intellexi App in development...
-                </p>
-                <a
-                    className="App-link"
-                    href="https://drive.google.com/drive/folders/1JdeLnMGu5Rxz8qxLUVE1VUxbHMk5tFZf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Shared Google Drive folder
-                </a>
-                <br/><br/>
-                <a
-                    className="App-link"
-                    href="https://github.com/mladen3/intellexi-app-web"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    GitHub repo for intellexi-app-web
-                </a>
-                <br/><br/>
-                <p style={{cursor: "pointer"}} onClick={() => props.history.push('/timesheet')}>
-                    Timesheet component
-                </p>
-                <br/><br/>
-                <p>
-                  {props.employees.map(e => {
-                    return `${e.firstName} ${e.lastName} - `
-                  })}
-                </p>
-                <br/><br/>
-                <p style={{cursor: "pointer"}} onClick={() => props.fetchEmployees()}>
-                  Dohvati zaposlenike
-                </p>
+  public routes = new Map([
+    ["Timesheet", ROUTE.timesheet],
+    ["Dashboard", ROUTE.dashboard],
+    ["Profile", ROUTE.employee]
+  ]);
 
-            </header>
-        )
-}
-
-function mapStateToProps(state: IAppState) {
-  return {
-    employees: state.employees.data
+  render() {
+    return (
+        <>
+          <ClippedDrawer routes={this.routes} goToPage={this.goToPage}>
+            <Switch>
+              <ProtectedRoute path={ROUTE.timesheet} exact component={Timesheet} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={true}/>
+              <Route>
+                <Redirect to={ROUTE.notFound}/>
+              </Route>
+            </Switch>
+          </ClippedDrawer>
+        </>
+    )
   }
 }
-
-function mapDispatchToProps(dispatch: any) {
-  return {
-    fetchEmployees: () => dispatch(fetchEmployeesAction())
-  }
-}
-
-export const Home = connect(mapStateToProps, mapDispatchToProps)(HomeInner);
