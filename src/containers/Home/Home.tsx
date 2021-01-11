@@ -27,15 +27,15 @@ export class HomeInner extends Component<IProps> {
     ]);
 
     render() {
-        const {isAuthentificated} = this.props;
+        // const {isAuthentificated} = this.props;
 
         return (
             <>
                 <ClippedDrawer routes={this.routes} goToPage={this.goToPage}>
                     <Switch>
-                        <ProtectedRoute path={ROUTE.timesheet} exact component={Timesheet} hasAuthorizationRights={isAuthentificated}/>
-                        <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={isAuthentificated}/>
-                        <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={isAuthentificated}/>
+                        <ProtectedRoute path={ROUTE.timesheet} exact component={Timesheet} hasAuthorizationRights={true}/>
+                        <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={true}/>
+                        <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={true}/>
                         <Route>
                             <Redirect to={ROUTE.notFound}/>
                         </Route>
