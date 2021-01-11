@@ -18,13 +18,15 @@ export const authReducer = (state: IAuthState = initialState, action: IAction<an
     case actionTypes.LOGIN_USER:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: undefined
       }
     case actionTypes.LOGIN_USER_SUCCESS:
       return {
         ...state,
         isAuthentificated: true,
-        loading: false
+        loading: false,
+        error: undefined
       }
     case actionTypes.LOGIN_USER_ERROR:
       return {
