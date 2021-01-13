@@ -7,8 +7,11 @@ import ClippedDrawer from "../../components/Drawer/Drawer";
 import {Dashboard} from "../dashboard/dashboard";
 import Employee from "../employee/employee";
 import TimesheetPageContainer from "../timesheet/timesheet-page-container";
+import {ListOfEmployees} from "../listOfEmployees/listOfEmployees";
+import {IAppState} from "app-store";
+import {connect} from "react-redux";
 
-export class Home extends Component {
+class HomeInner extends Component {
 
   public goToPage(path: string) {
     history.push(path);
@@ -17,7 +20,8 @@ export class Home extends Component {
   public routes = new Map([
     ["Timesheet", ROUTE.timesheet],
     ["Dashboard", ROUTE.dashboard],
-    ["Profile", ROUTE.employee]
+    ["Profile", ROUTE.employee],
+    ["List of Employees", ROUTE.listOfEmployees]
   ]);
 
   render() {
@@ -28,6 +32,7 @@ export class Home extends Component {
               <ProtectedRoute path={ROUTE.timesheet} exact component={TimesheetPageContainer} hasAuthorizationRights={true}/>
               <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={true}/>
               <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.listOfEmployees} component={ListOfEmployees} hasAuthorizationRights={true}/>
               <Route>
                 <Redirect to={ROUTE.notFound}/>
               </Route>
@@ -37,3 +42,12 @@ export class Home extends Component {
     )
   }
 }
+
+
+function mapStateToProps(state: IAppState) {
+  return {
+    isAuthentificated: state.auth.isAuthentificated
+  }
+}
+
+export const Home = connect(mapStateToProps, null)(HomeInner);

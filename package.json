@@ -28,6 +28,7 @@
     "axios-retry": "^3.1.9",
     "connected-react-router": "^6.8.0",
     "date-fns": "^2.16.1",
+    "fg-loadcss": "^3.1.0",
     "formik": "^2.2.6",
     "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",
@@ -73,6 +74,7 @@
   },
   "devDependencies": {
     "@fullcalendar/react": "^5.5.0",
+    "@types/fg-loadcss": "^3.1.1",
     "@types/react-router-dom": "^5.1.7"
   }
 }
