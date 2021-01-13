@@ -4,6 +4,7 @@ import createHashHistory from "history/createHashHistory";
 import {connectRouter, routerMiddleware} from "connected-react-router";
 import {reducers} from "./reducers";
 import {watchEmployeesSaga} from "./employees/employees.saga";
+import {watchAuthSaga} from "./auth/auth.saga";
 
 let composeEnhancers = compose;
 if (process.env.NODE_ENV !== "production") {
@@ -32,3 +33,4 @@ const rootReducer = (history: any) => combineReducers({
 export const store = createStore(rootReducer(history), composeEnhancers(applyMiddleware(saga, router)));
 
 saga.run(watchEmployeesSaga);
+saga.run(watchAuthSaga);
