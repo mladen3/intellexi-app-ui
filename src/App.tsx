@@ -2,7 +2,7 @@ import './App.css';
 import {Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 
-import {Home} from "./containers/Home/Home";
+import {Home} from "./pages/home/home";
 import history from "./history";
 import {Login} from "./pages/login/login";
 import {NotFoundPage} from "./pages/errorPages/notFoundPage";
