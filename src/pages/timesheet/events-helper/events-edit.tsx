@@ -10,12 +10,16 @@ import {
 import React from "react";
 import {useFormik} from "formik";
 import * as yup from 'yup';
+import moment from "moment";
 
 interface IProps{
     open: boolean;
     handleClose: () => void;
-    event?: any;
+    editEvent: any;
     addNewEventHandler: (values:any) => void;
+    checkIfNew: boolean;
+    updateEventHandler : (values: any, id: string) => void;
+    deleteEventHandler: (id: any) => void;
 }
 
 const validationSchema = yup.object({
@@ -33,19 +37,23 @@ const validationSchema = yup.object({
 
 
 export const EventsEdit = (props:IProps) => {
-
-    const formik = useFormik({
-        initialValues: {
-            title: '',
-            start: new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0],
-            end: new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0]
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            props.addNewEventHandler(values);
-            console.log(formik.errors);
-        },
-    });
+        const formik = useFormik({
+            initialValues: {
+                title: !props.checkIfNew ? props.editEvent.title : '',
+                start: !props.checkIfNew ? moment(props.editEvent.start).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm"),
+                end: !props.checkIfNew ? moment(props.editEvent.end).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm")
+            },
+            validationSchema: validationSchema,
+            onSubmit: (values) => {
+                if (props.checkIfNew) {
+                    props.addNewEventHandler(values);
+                } else {
+                    props.updateEventHandler(values, props.editEvent.id);
+                }
+                console.log(formik.errors);
+            },
+            enableReinitialize: true
+        });
     return (
       <div>
           <Dialog open={props.open} aria-labelledby="form-dialog-title">
@@ -62,7 +70,7 @@ export const EventsEdit = (props:IProps) => {
                                 id="title"
                                 name="title"
                                 label="Title of event"
-                                value={formik.values.title}
+                                defaultValue={formik.values.title}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.title && Boolean(formik.errors.title)}
@@ -102,9 +110,8 @@ export const EventsEdit = (props:IProps) => {
                   <Button  onClick={props.handleClose} color="primary">
                       Cancel
                   </Button>
-                  <Button  color="primary" type="submit">
-                      Update
-                  </Button>
+                  {!props.checkIfNew ?  <Button  color="primary" type="submit" >UPDATE</Button> : <Button color="primary" type="submit">ADD NEW</Button>}
+                  <Button color="secondary" disabled={props.checkIfNew} onClick={() => props.deleteEventHandler(props.editEvent.id)}>DELETE</Button>
               </DialogActions>
               </form>
           </Dialog>
