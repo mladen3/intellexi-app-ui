@@ -7,10 +7,14 @@ export const fetchEmployeesSuccessAction = (employees: IEmployee[]) => ({type: a
 
 export const fetchEmployeesErrorAction = (error: any) => ({type: actionTypes.FETCH_EMPLOYEES_ERROR, payload: error});
 
-export const deleteEmployeesAction = (id: number) => ({type: actionTypes.DELETE_EMPLOYEE, payload: id});
+export const deleteEmployeesAction = (employee: IEmployee) => ({type: actionTypes.DELETE_EMPLOYEE, payload: employee});
 
 export const deleteEmployeeErrorAction = (error: any) => ({type: actionTypes.DELETE_EMPLOYEE_ERROR, payload: error});
 
 export const createEmployeeAction = (employee: IEmployee) => ({type: actionTypes.CREATE_EMPLOYEE, payload: employee});
 
 export const createEmployeeErrorAction = (error: any) => ({type: actionTypes.CREATE_EMPLOYEE_ERROR, payload: error});
+
+export const updateEmployeeAction  = (employee: IEmployee) => ({type: actionTypes.UPDATE_EMPLOYEE, payload: employee});
+
+export const updateEmployeeErrorAction = (error: any) => ({type: actionTypes.UPDATE_EMPLOYEE_ERROR, payload: error});
