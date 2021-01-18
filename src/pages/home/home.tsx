@@ -10,6 +10,7 @@ import TimesheetPageContainer from "../timesheet/timesheet-page-container";
 import {ListOfEmployees} from "../listOfEmployees/listOfEmployees";
 import {IAppState} from "app-store";
 import {connect} from "react-redux";
+import {ConfirmationModal} from "../../components/ConfirmationModal/ConfirmationModal";
 
 class HomeInner extends Component {
 
@@ -38,6 +39,7 @@ class HomeInner extends Component {
               </Route>
             </Switch>
           </ClippedDrawer>
+          <ConfirmationModal/>
         </>
     )
   }

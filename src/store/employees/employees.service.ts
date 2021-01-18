@@ -28,3 +28,12 @@ export const createEmployee = (employee: IEmployee) => {
         throw error;
       })
 };
+
+export const updateEmployee = (employee: IEmployee) => {
+  return AxiosClient.noAuth.put(`/rest/v1/employee`, employee)
+      .then((response: AxiosResponse<null>) => {
+        return response;
+      }).catch(error => {
+        throw error;
+      })
+};
