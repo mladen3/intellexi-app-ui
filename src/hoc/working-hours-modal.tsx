@@ -2,9 +2,10 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow}
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import moment from "moment";
+import {IEvent} from "../model/common/IEvent";
 
 interface IProps{
-    calendarEvents:any
+    calendarEvents: IEvent[] | undefined
 }
 
 const useStyles = makeStyles({
@@ -26,8 +27,8 @@ export const WorkingHoursModal = (props:IProps) => {
                           </TableRow>
                       </TableHead>
                       <TableBody>
-                          {props.calendarEvents.map((event:any) => (
-                            <TableRow key={event.title}>
+                          {props.calendarEvents?.map((event:any) => (
+                            <TableRow key={event.id}>
                                 <TableCell component="th" scope="row">
                                     {event.title}
                                 </TableCell>

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {withRouter} from "react-router-dom";
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -12,6 +11,8 @@ import './timesheet.css';
 import {WorkingHoursModal} from "../../hoc/working-hours-modal";
 import {EventsEdit} from "./events-helper/events-edit";
 import moment from "moment/moment";
+import {IEvent} from "../../model/common/IEvent";
+import { EventInput } from "@fullcalendar/core";
 
 // interface IEvent {
 //     id: string;
@@ -27,7 +28,13 @@ moment.updateLocale('en', {
     },
 })
 
-class Timesheet extends Component<any, any> {
+interface IProps{
+    events: IEvent[] | undefined,
+    createEvent: (event: IEvent) => void,
+    deleteEvent: (eventId: number) => void
+}
+
+export class Timesheet extends Component<IProps, any> {
 
     state = {
         calendarEvents: [
@@ -69,13 +76,22 @@ class Timesheet extends Component<any, any> {
 
     calendarRef = React.createRef()
 
+
     render() {
+        console.log("u komponenti",this.props.events);
+
 
         return (
           <div className="Timesheet">
               <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, resourceTimeGridPlugin]}
-                events={this.state.calendarEvents}
+                events={this.props.events?.map(event => ({
+                    id: event.id,
+                    title: event.title,
+                    start: event.start,
+                    end: event.end,
+                    editable: event.editable
+                })) as unknown as EventInput[]}
                 headerToolbar={{
                     left: "prev,next workStartButton workEndButton addNewEvent",
                     center: "title",
@@ -103,14 +119,14 @@ class Timesheet extends Component<any, any> {
                 }}
                 selectable={true}
                 eventClick={(info) => {
-                    let event = this.state.calendarEvents.find(obj => obj.id === info.event.id);
+                    let event = this.props.events?.find(obj => String(obj.id) === info.event.id);
                     this.editDialogModal(event);
                 }}
               />
               <div>
                   <EventsEdit open={this.state.showDialogEdit} handleClose={this.closeDialogModal}
                               editEvent={this.state.editEvent} addNewEventHandler={this.addNewEventHandler} checkIfNew={this.state.checkIfNew}
-                              updateEventHandler={this.updateEventHandler} deleteEventHandler={this.deleteEventHandler}
+                              updateEventHandler={this.updateEventHandler} deleteEvent={this.deleteEventHandler}
                   />
               </div>
               <button onClick={() => {
@@ -119,7 +135,7 @@ class Timesheet extends Component<any, any> {
               > SHOW ALL EVENTS
               </button>
               <div>
-                  {this.state.show ? <WorkingHoursModal calendarEvents={this.state.calendarEvents}/> : null}
+                  {this.state.show ? <WorkingHoursModal calendarEvents={this.props.events}/> : null}
               </div>
           </div>
         )
@@ -200,14 +216,8 @@ class Timesheet extends Component<any, any> {
         this.setState({
             ...this.state,
             showDialogEdit: false,
-            calendarEvents: [...this.state.calendarEvents, {
-                id: (this.state.calendarEvents.length + 1).toString(),
-                title: values.title,
-                start: values.start,
-                end: values.end,
-                editable: true
-            }]
         })
+        this.props.createEvent(values);
     }
 
     updateEventHandler = (values: any, id: string) => {
@@ -228,13 +238,13 @@ class Timesheet extends Component<any, any> {
         })
     }
 
-    deleteEventHandler = (id: any) => {
-        let newArray = this.state.calendarEvents.filter(obj => obj.id !== id);
+    deleteEventHandler = (eventId: any) => {
+        console.log(eventId);
         this.setState({
             ...this.state,
             showDialogEdit: false,
-            calendarEvents: newArray
         })
+        this.props.deleteEvent(eventId);
     }
 
     checkerForWorkingHours = (eventDate: any) => {
@@ -246,14 +256,16 @@ class Timesheet extends Component<any, any> {
     }
 
     fetchWorkingHoursForWeekHandler = () =>{
-        let events = this.state.calendarEvents.filter(obj => obj.title === "WorkHours" && this.checkerForWorkingHours(obj.start));
+        let events = this.props.events?.filter(obj => obj.title === "WorkHours" && this.checkerForWorkingHours(obj.start));
         let timeWorked = 0;
-        events.forEach(event => {
-            if(event.end !== undefined && event.start !== undefined) {
-                timeWorked += new Date(event.end).getTime() - new Date(event.start).getTime();
-            }
-        })
-        this.msToTime(timeWorked);
+        if(events !== undefined) {
+            events.forEach(event => {
+                if (event.end !== undefined && event.start !== undefined) {
+                    timeWorked += new Date(event.end).getTime() - new Date(event.start).getTime();
+                }
+            })
+            this.msToTime(timeWorked);
+        }
     }
      msToTime = (s:number) => {
         let ms = s % 1000;
@@ -267,4 +279,3 @@ class Timesheet extends Component<any, any> {
     }
 }
 
-export default withRouter(Timesheet);

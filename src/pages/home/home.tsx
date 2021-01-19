@@ -6,7 +6,7 @@ import history from "../../history";
 import ClippedDrawer from "../../components/Drawer/Drawer";
 import {Dashboard} from "../dashboard/dashboard";
 import Employee from "../employee/employee";
-import TimesheetPageContainer from "../timesheet/timesheet-page-container";
+import {TimeSheetPageContainer} from "../timesheet/timesheet-page-container";
 import {ListOfEmployees} from "../listOfEmployees/listOfEmployees";
 import {IAppState} from "app-store";
 import {connect} from "react-redux";
@@ -29,7 +29,7 @@ class HomeInner extends Component {
         <>
           <ClippedDrawer routes={this.routes} goToPage={this.goToPage}>
             <Switch>
-              <ProtectedRoute path={ROUTE.timesheet} exact component={TimesheetPageContainer} hasAuthorizationRights={true}/>
+              <ProtectedRoute path={ROUTE.timesheet} exact component={TimeSheetPageContainer} hasAuthorizationRights={true}/>
               <ProtectedRoute path={ROUTE.dashboard} component={Dashboard} hasAuthorizationRights={true}/>
               <ProtectedRoute path={ROUTE.employee} component={Employee} hasAuthorizationRights={true}/>
               <ProtectedRoute path={ROUTE.listOfEmployees} component={ListOfEmployees} hasAuthorizationRights={true}/>

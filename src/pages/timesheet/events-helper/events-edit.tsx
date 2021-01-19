@@ -19,7 +19,7 @@ interface IProps{
     addNewEventHandler: (values:any) => void;
     checkIfNew: boolean;
     updateEventHandler : (values: any, id: string) => void;
-    deleteEventHandler: (id: any) => void;
+    deleteEvent: (eventId: number) => void;
 }
 
 const validationSchema = yup.object({
@@ -54,6 +54,7 @@ export const EventsEdit = (props:IProps) => {
             },
             enableReinitialize: true
         });
+
     return (
       <div>
           <Dialog open={props.open} aria-labelledby="form-dialog-title">
@@ -111,7 +112,7 @@ export const EventsEdit = (props:IProps) => {
                       Cancel
                   </Button>
                   {!props.checkIfNew ?  <Button  color="primary" type="submit" >UPDATE</Button> : <Button color="primary" type="submit">ADD NEW</Button>}
-                  <Button color="secondary" disabled={props.checkIfNew} onClick={() => props.deleteEventHandler(props.editEvent.id)}>DELETE</Button>
+                  <Button color="secondary" disabled={props.checkIfNew} onClick={() => props.deleteEvent(props.editEvent.id)}>DELETE</Button>
               </DialogActions>
               </form>
           </Dialog>

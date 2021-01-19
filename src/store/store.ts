@@ -5,6 +5,7 @@ import {connectRouter, routerMiddleware} from "connected-react-router";
 import {reducers} from "./reducers";
 import {watchEmployeesSaga} from "./employees/employees.saga";
 import {watchAuthSaga} from "./auth/auth.saga";
+import {watchEventsSaga} from "./events/events.saga";
 
 let composeEnhancers = compose;
 if (process.env.NODE_ENV !== "production") {
@@ -34,3 +35,4 @@ export const store = createStore(rootReducer(history), composeEnhancers(applyMid
 
 saga.run(watchEmployeesSaga);
 saga.run(watchAuthSaga);
+saga.run(watchEventsSaga);
