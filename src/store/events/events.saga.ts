@@ -50,5 +50,6 @@ export function* watchEventsSaga(){
     yield takeLatest(actionTypes.FETCH_EVENTS, fetchEventsSaga);
     yield takeLatest(actionTypes.DELETE_EVENT, deleteEventSaga);
     yield takeLatest(actionTypes.CREATE_EVENT, createEventSaga);
+    yield takeLatest(actionTypes.UPDATE_EVENT, updateEventSaga);
 }
 

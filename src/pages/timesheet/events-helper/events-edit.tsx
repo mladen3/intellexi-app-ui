@@ -11,14 +11,13 @@ import React from "react";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 import moment from "moment";
-
 interface IProps{
     open: boolean;
     handleClose: () => void;
     editEvent: any;
-    addNewEventHandler: (values:any) => void;
+    addNewEventHandler: (values:any) => void; //to do use type(IEvent) instead any
     checkIfNew: boolean;
-    updateEventHandler : (values: any, id: string) => void;
+    updateEvent: (values: any) => void // to do use type(IEvent) instead any
     deleteEvent: (eventId: number) => void;
 }
 
@@ -41,14 +40,16 @@ export const EventsEdit = (props:IProps) => {
             initialValues: {
                 title: !props.checkIfNew ? props.editEvent.title : '',
                 start: !props.checkIfNew ? moment(props.editEvent.start).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm"),
-                end: !props.checkIfNew ? moment(props.editEvent.end).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm")
+                end: !props.checkIfNew ? moment(props.editEvent.end).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm"),
+                editable: !props.checkIfNew ? props.editEvent.editable : true,
+                id: !props.checkIfNew ? props.editEvent.id : undefined
             },
             validationSchema: validationSchema,
             onSubmit: (values) => {
                 if (props.checkIfNew) {
                     props.addNewEventHandler(values);
                 } else {
-                    props.updateEventHandler(values, props.editEvent.id);
+                    props.updateEvent(values);
                 }
                 console.log(formik.errors);
             },

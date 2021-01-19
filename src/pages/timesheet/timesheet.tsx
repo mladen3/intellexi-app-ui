@@ -14,14 +14,6 @@ import moment from "moment/moment";
 import {IEvent} from "../../model/common/IEvent";
 import { EventInput } from "@fullcalendar/core";
 
-// interface IEvent {
-//     id: string;
-//     title: string;
-//     start: Date;
-//     end: Date;
-//     editable: boolean;
-// }
-
 moment.updateLocale('en', {
     week: {
         dow: 1,
@@ -31,10 +23,13 @@ moment.updateLocale('en', {
 interface IProps{
     events: IEvent[] | undefined,
     createEvent: (event: IEvent) => void,
-    deleteEvent: (eventId: number) => void
+    deleteEvent: (eventId: number) => void,
+    updateEvent: (event: IEvent) => void
 }
 
 export class Timesheet extends Component<IProps, any> {
+
+    // to do clear state from unused variables
 
     state = {
         calendarEvents: [
@@ -126,7 +121,7 @@ export class Timesheet extends Component<IProps, any> {
               <div>
                   <EventsEdit open={this.state.showDialogEdit} handleClose={this.closeDialogModal}
                               editEvent={this.state.editEvent} addNewEventHandler={this.addNewEventHandler} checkIfNew={this.state.checkIfNew}
-                              updateEventHandler={this.updateEventHandler} deleteEvent={this.deleteEventHandler}
+                              updateEvent={this.updateEventHandler} deleteEvent={this.deleteEventHandler}
                   />
               </div>
               <button onClick={() => {
@@ -220,22 +215,12 @@ export class Timesheet extends Component<IProps, any> {
         this.props.createEvent(values);
     }
 
-    updateEventHandler = (values: any, id: string) => {
-        let eventToEdit = this.state.calendarEvents.findIndex(obj => obj.id === id);
+    updateEventHandler = (values: any) => {
         this.setState({
             ...this.state,
             showDialogEdit: false,
-            calendarEvents: [
-              ...this.state.calendarEvents.slice(0,eventToEdit),
-                {
-                    ...this.state.calendarEvents[eventToEdit],
-                    title: values.title,
-                    start: values.start,
-                    end: values.end,
-                },
-              ...this.state.calendarEvents.slice(eventToEdit+1)
-            ]
         })
+        this.props.updateEvent(values);
     }
 
     deleteEventHandler = (eventId: any) => {
