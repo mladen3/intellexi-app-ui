@@ -34,8 +34,8 @@ export default function Plus(props: IProps) {
   });
 
   return (
-      <div onClick={props.onClickHandler} className={classes.root}>
-        <Icon className="fa fa-plus-circle" color="primary" style={{ fontSize: 30 }} />
+      <div className={classes.root}>
+        <Icon onClick={props.onClickHandler} className="fa fa-plus-circle" color="primary" style={{ fontSize: 30 }} />
       </div>
   );
 }

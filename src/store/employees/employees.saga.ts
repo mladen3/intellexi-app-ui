@@ -6,6 +6,7 @@ import {IEmployee} from "../../model/common/IEmployee";
 import {IAction} from "app-store";
 import {openConfirmModalAction} from "../confirmModal/confirm.actions";
 import * as confirmActionTypes from "../confirmModal/confirm.action-types";
+import {IAuth} from "../../model/common/IAuth";
 
 export function* fetchEmployeesSaga() {
   try {
@@ -39,8 +40,15 @@ export function* deleteEmployeeSaga(action: IAction<any>) {
 
 export function* createEmployeeSaga(action: IAction<any>) {
   try {
-    yield call(service.createEmployee, action.payload);
-    yield put(actions.fetchEmployeesAction());
+    const auth: IAuth = yield call(service.createEmployee, action.payload);
+
+    yield put(openConfirmModalAction("credentials of user are: username " + auth.username + ", password " + auth.password, true));
+
+    const confirm = yield take(confirmActionTypes.CONFIRM);
+
+    if (confirm) {
+      yield put(actions.fetchEmployeesAction());
+    }
   } catch (error) {
     yield put(actions.createEmployeeErrorAction(error));
   }

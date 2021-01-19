@@ -13,6 +13,7 @@ interface IProps {
   confirmAction: () => void;
   message: string;
   modalOpened: boolean;
+  cancelNotActive: boolean | undefined;
 }
 
 class ConfirmationModalInner extends Component<IProps>{
@@ -26,9 +27,10 @@ class ConfirmationModalInner extends Component<IProps>{
               {this.props.message}
             </DialogContent>
             <DialogActions>
+              {!this.props.cancelNotActive &&
               <Button onClick={this.props.cancelAction} color="primary">
                 Cancel
-              </Button>
+              </Button>}
               <Button onClick={this.props.confirmAction} color="primary">
                 Confirm
               </Button>
@@ -42,8 +44,8 @@ class ConfirmationModalInner extends Component<IProps>{
 function mapStateToProps(state: IAppState) {
   return {
     message: state.confirmModal.message,
-    modalOpened: state.confirmModal.modalOpened
-
+    modalOpened: state.confirmModal.modalOpened,
+    cancelNotActive: state.confirmModal.cancelNotActive
   }
 }
 
