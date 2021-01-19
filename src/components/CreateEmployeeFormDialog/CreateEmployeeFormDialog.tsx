@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function CreateUserFormDialog(props: IProps) {
+export default function CreateEmployeeFormDialog(props: IProps) {
 
   const classes = useStyles();
 
@@ -59,7 +59,7 @@ export default function CreateUserFormDialog(props: IProps) {
                          variant="outlined" onChange={(e) => employee.lastName = e.target.value}/>
             </div>
             <div className="TextField Last name">
-              <TextField id="outlined-basic" label="Last name" size="small"
+              <TextField id="outlined-basic" label="Years of experience" size="small"
                          variant="outlined" onChange={(e) => employee.yearsOfExperience = e.target.value}/>
             </div>
             <FormControl className={classes.formControl}>

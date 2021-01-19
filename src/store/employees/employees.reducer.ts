@@ -55,6 +55,17 @@ export const employeesReducer = (state: IEmployeesState = initialState, action: 
         loading: false,
         error: action.payload
       }
+    case actionTypes.UPDATE_EMPLOYEE:
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.UPDATE_EMPLOYEE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
     default:
       return state;
   }

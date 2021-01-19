@@ -6,21 +6,25 @@ import {IEmployee} from "../../model/common/IEmployee";
 import {
   createEmployeeAction,
   deleteEmployeesAction,
-  fetchEmployeesAction
+  fetchEmployeesAction, updateEmployeeAction
 } from "../../store/employees/employees.actions";
 import {EmployeesTable} from "../../components/EmployeesTable/EmployeesTable";
 import Plus from "../../components/Icons/Plus";
-import CreateUserFormDialog from "../../components/CreateUserFormDialog/CreateUserFormDialog";
+import CreateEmployeeFormDialog from "../../components/CreateEmployeeFormDialog/CreateEmployeeFormDialog";
+import ViewEmployeeFormDialog from "../../components/ViewEmployeeFormDialog/ViewEmployeeFormDialog";
 
 interface IProps {
   employees: IEmployee[] | undefined;
   fetchEmployees: () => void;
-  deleteEmployee: (id: number) => void;
+  deleteEmployee: (employee: IEmployee) => void;
   createEmployee: (employee: IEmployee) => void;
+  updateEmployee: (employee: IEmployee) => void;
 }
 
 interface IState {
-  modalOpened: boolean;
+  createModalOpened: boolean;
+  viewModalOpened: boolean;
+  viewEmployee: IEmployee;
 }
 
 class ListOfEmployeesInner extends Component<IProps, IState> {
@@ -30,7 +34,9 @@ class ListOfEmployeesInner extends Component<IProps, IState> {
   }
 
   state = {
-    modalOpened: false
+    createModalOpened: false,
+    viewModalOpened: false,
+    viewEmployee: {} as IEmployee
   }
 
   render() {
@@ -38,29 +44,51 @@ class ListOfEmployeesInner extends Component<IProps, IState> {
         <>
           <EmployeesTable
               employees={this.props.employees}
-              deleteEmployee={this.props.deleteEmployee}/>
+              deleteEmployee={this.props.deleteEmployee}
+              openViewEmployeeModal={this.openViewEmployeeModal.bind(this)}/>
 
           <Plus onClickHandler={this.openCreateEmployeeModal.bind(this)}/>
 
-          <CreateUserFormDialog
-              open={this.state.modalOpened}
+          <CreateEmployeeFormDialog
+              open={this.state.createModalOpened}
               onClose={this.closeCreateEmployeeModal.bind(this)}
               createEmployee={this.createEmployee.bind(this)}/>
+
+          <ViewEmployeeFormDialog
+              open={this.state.viewModalOpened}
+              employee={this.state.viewEmployee}
+              onClose={this.closeViewEmployeeModal.bind(this)}
+              updateEmployee={this.updateEmployee.bind(this)}/>
         </>
     );
   }
 
+ // create employee
   openCreateEmployeeModal() {
-    this.setState({modalOpened: true});
+    this.setState({createModalOpened: true});
   }
 
   closeCreateEmployeeModal() {
-    this.setState({modalOpened: false});
+    this.setState({createModalOpened: false});
   }
 
   createEmployee(employee: IEmployee) {
     this.props.createEmployee(employee);
     this.closeCreateEmployeeModal();
+  }
+
+  // view and update employee
+  openViewEmployeeModal(employee: IEmployee) {
+    this.setState({viewModalOpened: true, viewEmployee: employee});
+  }
+
+  closeViewEmployeeModal() {
+    this.setState({viewModalOpened: false, viewEmployee: {} as IEmployee});
+  }
+
+  updateEmployee(employee: IEmployee) {
+    this.props.updateEmployee(employee);
+    this.closeViewEmployeeModal();
   }
 
 }
@@ -74,8 +102,9 @@ function mapStateToProps(state: IAppState) {
 function mapDispatchToProps(dispatch: any) {
   return {
     fetchEmployees: () => dispatch(fetchEmployeesAction()),
-    deleteEmployee: (id: number) => dispatch(deleteEmployeesAction(id)),
-    createEmployee: (employee: IEmployee) => dispatch(createEmployeeAction(employee))
+    deleteEmployee: (employee: IEmployee) => dispatch(deleteEmployeesAction(employee)),
+    createEmployee: (employee: IEmployee) => dispatch(createEmployeeAction(employee)),
+    updateEmployee: (employee: IEmployee) => dispatch(updateEmployeeAction(employee))
   }
 }
 
