@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IProps {
   setDate: (date: Date) => void;
   date?: Date | undefined;
+  path?: string | undefined;
+  message?: string | undefined;
 }
 
 export default function DatePicker(props: IProps) {
@@ -35,6 +37,8 @@ export default function DatePicker(props: IProps) {
         <TextField
             id="date"
             label="Date of birthday"
+            name="dateOfBirth"
+            error={props.path === "dateOfBirth"}
             type="date"
             defaultValue={props.date ? props.date : "0000-00-00"}
             onChange={(e) => setAndFormatDate(e.target.value)}
@@ -42,6 +46,7 @@ export default function DatePicker(props: IProps) {
             InputLabelProps={{
               shrink: true,
             }}
+            helperText={props.path === "dateOfBirth" ? props.message : ""}
         />
       </form>
   );
