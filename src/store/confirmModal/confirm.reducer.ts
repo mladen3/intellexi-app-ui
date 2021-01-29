@@ -4,11 +4,13 @@ import * as actionTypes from "./confirm.action-types";
 export interface IConfirmModalState {
   modalOpened: boolean;
   message: string;
+  cancelNotActive: boolean | undefined;
 }
 
 const initialState: IConfirmModalState = {
   modalOpened: false,
-  message: ""
+  message: "",
+  cancelNotActive: false
 }
 
 export const confirmReducer = (state: IConfirmModalState = initialState, action: IAction<any>) => {
@@ -17,19 +19,22 @@ export const confirmReducer = (state: IConfirmModalState = initialState, action:
       return {
         ...state,
         modalOpened: true,
-        message: action.payload
+        message: action.payload.message,
+        cancelNotActive: action.payload.cancelNotActive
       }
     case actionTypes.CONFIRM:
       return {
         ...state,
         modalOpened: false,
-        message: ""
+        message: "",
+        cancelNotActive: false
       }
     case actionTypes.CANCEL:
       return {
         ...state,
         modalOpened: false,
-        message: ""
+        message: "",
+        cancelNotActive: false
       }
     default:
       return state;

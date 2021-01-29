@@ -1,6 +1,7 @@
 import AxiosClient from "../../axios-client";
 import {AxiosResponse} from "axios";
 import {IEmployee} from "../../model/common/IEmployee";
+import {IAuth} from "../../model/common/IAuth";
 
 export const fetchEmployees = () => {
   return AxiosClient.noAuth.get(`/rest/v1/employee/findAll`)
@@ -22,8 +23,8 @@ export const deleteEmployee = (id: number) => {
 
 export const createEmployee = (employee: IEmployee) => {
   return AxiosClient.noAuth.post(`/rest/v1/employee`, employee)
-      .then((response: AxiosResponse<IEmployee>) => {
-        return response;
+      .then((response: AxiosResponse<IAuth>) => {
+        return response.data;
       }).catch(error => {
         throw error;
       })
