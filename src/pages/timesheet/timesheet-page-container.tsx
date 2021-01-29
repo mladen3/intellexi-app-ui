@@ -10,6 +10,8 @@ import {
     fetchEventsAction,
     updateEventAction
 } from "../../store/events/events.actions";
+import {fetchProjectsAction} from "../../store/projects/projects.actions";
+import {IProject} from "../../model/common/IProject";
 
 
 
@@ -18,7 +20,9 @@ interface IProps{
     fetchEvents: () => void,
     createEvent: (event: IEvent) => void,
     deleteEvent: (eventId: number) => void,
-    updateEvent: (event: IEvent) => void
+    updateEvent: (event: IEvent) => void,
+    projects: IProject[] | undefined,
+    fetchProjects: () => void
 }
 
 interface IState{
@@ -28,13 +32,17 @@ class TimesheetPageContainer extends Component<IProps, IState> {
 
     componentDidMount() {
         this.props.fetchEvents();
+        this.props.fetchProjects();
     }
 
     public render() {
 
         return (
           <React.Fragment>
-              <Timesheet  events={this.props.events} createEvent={this.props.createEvent} deleteEvent={this.props.deleteEvent} updateEvent={this.props.updateEvent}/>
+              <Timesheet  events={this.props.events} createEvent={this.props.createEvent} deleteEvent={this.props.deleteEvent}
+                          updateEvent={this.props.updateEvent} projects={this.props.projects}
+                          fetchProjects={this.props.fetchProjects}
+              />
           </React.Fragment>
         )
     }
@@ -42,7 +50,8 @@ class TimesheetPageContainer extends Component<IProps, IState> {
 
 function mapStateToProps(state: IAppState){
     return {
-        events: state.events.data
+        events: state.events.data,
+        projects: state.projects.data
     }
 }
 
@@ -52,7 +61,8 @@ function mapDispatchToProps(dispatch: any){
         fetchEvents:() => dispatch(fetchEventsAction()),
         createEvent:(event: IEvent) => dispatch(createEventAction(event)),
         deleteEvent: (eventId: number) => dispatch(deleteEventAction(eventId)),
-        updateEvent: (event: IEvent) => dispatch(updateEventAction(event))
+        updateEvent: (event: IEvent) => dispatch(updateEventAction(event)),
+        fetchProjects: () => dispatch(fetchProjectsAction())
 
     }
 }

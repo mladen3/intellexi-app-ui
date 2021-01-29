@@ -11,6 +11,7 @@ import React from "react";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 import moment from "moment";
+import {IProject} from "../../../model/common/IProject";
 interface IProps{
     open: boolean;
     handleClose: () => void;
@@ -19,6 +20,7 @@ interface IProps{
     checkIfNew: boolean;
     updateEvent: (values: any) => void // to do use type(IEvent) instead any
     deleteEvent: (eventId: number) => void;
+    projects: IProject[] | undefined;
 }
 
 const validationSchema = yup.object({
@@ -42,7 +44,8 @@ export const EventsEdit = (props:IProps) => {
                 start: !props.checkIfNew ? moment(props.editEvent.start).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm"),
                 end: !props.checkIfNew ? moment(props.editEvent.end).format("YYYY-MM-DD[T]HH:mm") : moment().format("YYYY-MM-DD[T]HH:mm"),
                 editable: !props.checkIfNew ? props.editEvent.editable : true,
-                id: !props.checkIfNew ? props.editEvent.id : undefined
+                id: !props.checkIfNew ? props.editEvent.id : undefined,
+                projects: undefined
             },
             validationSchema: validationSchema,
             onSubmit: (values) => {
@@ -107,6 +110,24 @@ export const EventsEdit = (props:IProps) => {
                                 helperText={formik.touched.end && formik.errors.end}
                               />
                           </div>
+                  {/*<div>*/}
+                  {/*    <SelectItem*/}
+                  {/*      label="Client"*/}
+                  {/*      value={formik.program?.client?.id}*/}
+                  {/*      name="program.client.id"*/}
+                  {/*      handleChange={formik.handleChange}*/}
+                  {/*      errorMessage={formik.errors.program?.client?.id}*/}
+                  {/*      handleBlur={formik.handleBlur}*/}
+                  {/*      touched={formik.touched.program?.client?.id}*/}
+                  {/*      options={*/}
+                  {/*          [{label: "", value: ""}].concat(*/}
+                  {/*            contextClient.clients.map((item) => {*/}
+                  {/*                return {label: item.content.designation.label, value: item.id}*/}
+                  {/*            })*/}
+                  {/*          )*/}
+                  {/*      }*/}
+                  {/*    />*/}
+                  {/*</div>*/}
               </DialogContent>
               <DialogActions>
                   <Button  onClick={props.handleClose} color="primary">

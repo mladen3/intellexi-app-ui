@@ -13,6 +13,7 @@ import {EventsEdit} from "./events-helper/events-edit";
 import moment from "moment/moment";
 import {IEvent} from "../../model/common/IEvent";
 import { EventInput } from "@fullcalendar/core";
+import {IProject} from "../../model/common/IProject";
 
 moment.updateLocale('en', {
     week: {
@@ -24,7 +25,9 @@ interface IProps{
     events: IEvent[] | undefined,
     createEvent: (event: IEvent) => void,
     deleteEvent: (eventId: number) => void,
-    updateEvent: (event: IEvent) => void
+    updateEvent: (event: IEvent) => void,
+    projects: IProject[] | undefined,
+    fetchProjects: () => void
 }
 
 export class Timesheet extends Component<IProps, any> {
@@ -74,6 +77,7 @@ export class Timesheet extends Component<IProps, any> {
 
     render() {
         console.log("u komponenti",this.props.events);
+        console.log("projects:", this.props.projects);
 
 
         return (
@@ -121,7 +125,7 @@ export class Timesheet extends Component<IProps, any> {
               <div>
                   <EventsEdit open={this.state.showDialogEdit} handleClose={this.closeDialogModal}
                               editEvent={this.state.editEvent} addNewEventHandler={this.addNewEventHandler} checkIfNew={this.state.checkIfNew}
-                              updateEvent={this.updateEventHandler} deleteEvent={this.deleteEventHandler}
+                              updateEvent={this.updateEventHandler} deleteEvent={this.deleteEventHandler} projects={this.props.projects}
                   />
               </div>
               <button onClick={() => {
